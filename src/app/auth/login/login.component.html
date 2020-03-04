@@ -1,0 +1,27 @@
+<p *ngIf="co=='n'">Login To Access order and cart</p>
+
+<div class="container">
+  <mat-card>
+    <mat-spinner *ngIf="isLoading && (co!=='efailure' || co!=='false' || co!=='a')"></mat-spinner>
+    
+    <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading || co=='efailure' || co=='false'">
+      <mat-form-field>
+        <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
+        <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+      </mat-form-field>
+      <mat-error class="e"  *ngIf="co=='efailure'">Please enter a valid email.</mat-error>
+      <br><br>
+      <mat-form-field>
+        <input [type]="hide ? 'password' : 'text'" name="password" ngModel  matInput placeholder="Password" #passwordInput="ngModel" required>
+         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+        </button>
+        <mat-error class="e" *ngIf="passwordInput.invalid ">Please enter a valid password.</mat-error>
+        
+      </mat-form-field>
+      <mat-error *ngIf="error">{{error}}</mat-error>
+      <button mat-raised-button color="accent" type="submit">Login</button>
+    </form>
+  </mat-card>
+  
+</div>

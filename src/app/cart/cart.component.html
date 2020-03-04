@@ -1,0 +1,34 @@
+<div class="container">
+    <p>Cart</p>
+    <div class="row">
+        <div class="col-8">
+            <mat-card>
+                <div class="row">
+                    <div class="col-12" *ngFor="let i of item;let index=index">
+                        <span>{{i.name}}</span>
+                        <button mat-icon-button (click)="onMinus(index)" color="accent">-</button>
+                        <span> {{i.no}} </span>
+                        <button mat-icon-button (click)="onPlus(index)" color="accent">+</button>
+                        <br>
+                        <span>      Price : {{i.price}}           </span> 
+                        <br>
+                        <button mat-raised-button (click)="onDelete(i.id)" color="accent">delete</button>
+                        <hr>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col-3">
+            <mat-card>
+                <p>Total Price</p>
+                <hr>
+                <p>price : {{price}}</p>
+                <p>Delivery Charges : 25</p>
+                <hr>
+                <p>Total : {{price+25}}</p>
+                <hr>
+                <button mat-raised-button (click)="onOrder()" color="accent">Place Order</button>
+            </mat-card>
+        </div>
+    </div>
+</div>

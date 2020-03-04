@@ -1,0 +1,14 @@
+mat-form-field {
+    width: 100%;
+  }
+  
+  mat-spinner {
+    margin: auto;
+  }
+  
+.e{
+  line-height: 10px;
+}
+.container{
+  padding: 5vh  30vw;
+}

@@ -1,0 +1,14 @@
+<div *ngFor="let i of item">
+
+    <div class="row">
+        <div class="col-4">
+            <span>{{i.name}}</span>
+        </div>
+        <div class="col-3">
+            <span>{{i.price}}</span>
+        </div>
+        <div class="col-4">
+            <button mat-raised-button (click)="onAdd(i.id)" color="accent">Add to cart</button>
+        </div>
+    </div>
+</div>

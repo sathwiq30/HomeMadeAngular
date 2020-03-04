@@ -1,0 +1,44 @@
+<form class="example-form">
+    <mat-form-field >
+      <mat-label>Item  Label</mat-label>
+      <input name="s" matInput placeholder="Ex. Pizza" [(ngModel)]= "text" >
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label>Price</mat-label>
+      <input name="sa" matInput placeholder="500" [(ngModel)]= "price" >
+    </mat-form-field>
+    <button mat-raised-button (click)="onSubmit()" color="accent">Add to menu</button>
+  </form>
+<div *ngFor="let i of item">
+    <div class="row" *ngIf=" itemId !== i.id">
+        <div class="col-4">
+            <span>{{i.name}}</span>
+        </div>
+        <div class="col-2">
+            <span>{{i.price}}</span>
+        </div>
+        <div class="col-2">
+          <button mat-raised-button (click)="onEdit(i)" color="accent">Edit</button>
+        </div>
+        <div class="col-2">
+          <button mat-raised-button (click)="onDelete(i.id)" color="accent">delete</button>
+        </div>
+    </div>
+    <div *ngIf="edit && itemId === i.id;">
+        <form class="example-form">
+          <mat-form-field >
+            <mat-label>Item  Label</mat-label>
+            <input name="s" matInput placeholder="Ex. Pizza" [(ngModel)]= "editText" >
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>Price</mat-label>
+            <input name="sa" matInput placeholder="500" [(ngModel)]= "editPrice" >
+          </mat-form-field>
+          <button mat-raised-button (click)="onUpdate()" color="accent">update to menu</button>
+        </form>
+    </div>
+    <br>
+</div>
+
+
+
