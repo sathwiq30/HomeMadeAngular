@@ -25,7 +25,7 @@ export class ItemComponent implements OnInit {
     });
   }
   onSubmit(){
-    this.firestore.collection('menu').add({ 'name' : this.text,price : this.price, 'cid' :  this.id })
+    this.firestore.collection('menu').add({ 'name' : this.text,price : this.price, 'cid' :  this.id ,'chefId' : 'yiDtTBrdQxMr82Z37P4rQz4aCJK2'})
   }
   edit =false
   i
@@ -40,7 +40,7 @@ export class ItemComponent implements OnInit {
     this.itemId = i.id
   }
   onUpdate(){
-    this.firestore.collection('menu').doc(this.itemId).update({ 'name' : this.editText,price : this.editPrice, 'cid' :  this.i.cid })
+    this.firestore.collection('menu').doc(this.itemId).update({ 'name' : this.editText,price : this.editPrice, 'cid' :  this.i.cid,'chefId': 'yiDtTBrdQxMr82Z37P4rQz4aCJK2' })
     this.edit = false
     this.i = null
     this.editPrice= null

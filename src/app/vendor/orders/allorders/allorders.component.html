@@ -1,0 +1,32 @@
+<div class="container">
+    <br>
+    <h4>Orders</h4>
+    <div *ngFor="let o of orders">
+      <mat-card >
+        <div class="row">
+          <div class="col-3">
+            <span>{{o.id}}</span>
+          </div>
+          <div class="col"></div>
+          <div class="col-3">
+            <button mat-raised-button  color="accent">status {{ o.status }}</button>
+          </div>
+          <div class="col-2">
+            <button mat-raised-button  color="accent">Track Order</button>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+  
+          <div class="col-5">
+            <p>{{o.items[0].name}} X {{o.items[0].no}}</p>
+            <p>{{o.items[0].price}}</p>
+          </div>
+          <div class="col-3">
+            <p>Paid : {{o.paid}}</p>
+          </div>
+        </div>
+      </mat-card><br>
+    </div>
+    
+  </div>

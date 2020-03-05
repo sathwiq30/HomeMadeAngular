@@ -18,6 +18,7 @@ export class CartComponent implements OnInit {
   menuItems: Observable<any>;
   item 
   price = 0
+  address= ''
   ngOnInit() {
 
     this.items = this.firestore.collection('cart',ref => ref.where('uid', '==', 'vwTj6BHuESaNgjffflnbrdZ6eWV2')).valueChanges({ idField: 'id' });
@@ -28,16 +29,19 @@ export class CartComponent implements OnInit {
       this.menu.map(m=>{
         this.menuItems = this.firestore.collection('menu').doc(m.itemId).valueChanges();
         this.menuItems.subscribe(i=> {
-          i['id'] = m.id
-          i['no'] = 1
-          this.item.push(i)
-          console.log(i)
-          this.price = this.price+ parseInt(i.price)
+          if(i!= null){
+            i['id'] = m.id
+            i['no'] = 1
+            this.item.push(i)
+            console.log(i)
+            this.price = this.price+ parseInt(i.price)
+          }
          })
       })
     } )
-    
-    
+  }
+  onAddress(a){
+    this.address = a
   }
   onDelete(id){
     this.firestore.collection('cart').doc(id).delete()
@@ -53,7 +57,8 @@ export class CartComponent implements OnInit {
     } 
   }
   onOrder(){
-    this.firestore.collection('orders').add({'items': this.item,'paid': this.price,'uid':'vwTj6BHuESaNgjffflnbrdZ6eWV2'})
+    console.log(this.address)
+    this.firestore.collection('orders').add({'items': this.item,'paid': this.price,'uid':'vwTj6BHuESaNgjffflnbrdZ6eWV2','chefId': this.item[0].chefId,'status': 0,'address' : this.address})
   }
 
 }

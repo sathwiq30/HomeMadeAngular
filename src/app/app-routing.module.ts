@@ -8,7 +8,8 @@ import { ItemsComponent } from './menu/items/items.component';
 import { MenusComponent } from './vendor/menus/menus.component';
 import { ItemComponent } from './vendor/menus/item/item.component';
 import { CartComponent } from './cart/cart.component';
-
+import { OrderComponent } from './vendor/order/order.component';
+import { AllordersComponent } from './vendor/orders/allorders/allorders.component';
 
 const routes: Routes = [
   { path : '' , redirectTo : 'menu',pathMatch : 'full'},
@@ -22,6 +23,8 @@ const routes: Routes = [
       {path: 'item/:id', component: ItemComponent}
     ]
   },
+  { path : 'vendor/orders' , component : OrderComponent},
+  { path : 'vendor/allorders' , component : AllordersComponent},
   { path : 'cart' , component : CartComponent},
   { path : 'orders' , component : OrdersComponent},
   {path : 'login', component: LoginComponent},

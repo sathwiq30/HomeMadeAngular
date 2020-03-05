@@ -1,0 +1,18 @@
+<h4>
+    Received Orders
+</h4>
+<div class="row">
+    <div class="col-3" *ngFor="let o of orders">
+        <mat-card>
+            <span>  Id : {{o.id}}</span>
+            <hr>
+            <div *ngFor="let i of o.items">
+                <span>{{i.name}}  X {{ i.no }}</span>
+            </div>
+            <hr>
+            <span>Total Price : {{o.paid}} </span><br><br>
+            <button mat-raised-button (click)="onDelete(o.id)"  color="accent">delete</button>
+            <button mat-raised-button (click)="onAccept(o.id)" style="float: right;" color="primary">Accept</button>
+        </mat-card>
+    </div>
+</div>

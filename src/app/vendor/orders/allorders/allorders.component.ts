@@ -4,17 +4,21 @@ import { Observable } from 'rxjs';
 import 'firebase/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  selector: 'app-allorders',
+  templateUrl: './allorders.component.html',
+  styleUrls: ['./allorders.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class AllordersComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore,private router: Router,private route: ActivatedRoute) { }
   orders
   items: Observable<any[]>;
   ngOnInit() {
-    this.items = this.firestore.collection('orders',ref => ref.where('uid', '==', 'vwTj6BHuESaNgjffflnbrdZ6eWV2')).valueChanges({ idField: 'id' });
+    this.items = this.firestore.collection('orders',
+    ref => 
+      ref
+      .where('chefId', '==', 'yiDtTBrdQxMr82Z37P4rQz4aCJK2') 
+    ).valueChanges({ idField: 'id' });
     this.items.subscribe((items:any)=> {
       this.orders=items; 
       items.map((i:any,id)=>{
@@ -37,7 +41,5 @@ export class OrdersComponent implements OnInit {
       })
       console.log(this.orders)
     } )
-    
   }
-
 }

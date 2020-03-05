@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {MatStepperModule} from '@angular/material/stepper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,7 +26,12 @@ import { MenusComponent } from './vendor/menus/menus.component';
 import { CategoryComponent } from './vendor/menus/category/category.component';
 import { ItemComponent } from './vendor/menus/item/item.component';
 import { CartComponent } from './cart/cart.component';
-import { CitemComponent } from './cart/citem/citem.component'
+import { CitemComponent } from './cart/citem/citem.component';
+import { UnconfirmedComponent } from './vendor/orders/unconfirmed/unconfirmed.component';
+import { PreparingComponent } from './vendor/orders/preparing/preparing.component';
+import { OrderComponent } from './vendor/order/order.component';
+import { AllordersComponent } from './vendor/orders/allorders/allorders.component';
+import { AddressComponent } from './cart/address/address.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,10 +47,17 @@ import { CitemComponent } from './cart/citem/citem.component'
     CategoryComponent,
     ItemComponent,
     CartComponent,
-    CitemComponent
+    CitemComponent,
+    UnconfirmedComponent,
+    PreparingComponent,
+    OrderComponent,
+    AllordersComponent,
+    AddressComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    FormsModule,
+    MatStepperModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserModule,
