@@ -1,5 +1,5 @@
 <mat-toolbar  color="primary"  class="toolColor">
-  <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
+  <button mat-raised-button >Toggle drawer</button>
   <!-- <span routerLinkActive="active">
     <a [routerLink]="['/home']" >Home<mat-icon>home</mat-icon></a>
   </span>
@@ -11,14 +11,9 @@
 <span>
   <a mat-button routerLink="/login" routerLinkActive="active">Singin</a>   
 </span>
-   
-<span *ngIf="!userIsAuthenticated">
+<span >
   <a mat-button routerLink="/signup" routerLinkActive="active">Signup</a>
 </span>
-<span *ngIf="userIsAuthenticated">
-  <button mat-button (click)="onLogout()">Logout</button>
-</span>
-
 <span>
   <a mat-button routerLink="/orders" routerLinkActive="active">Orders</a>
 </span>
