@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import 'firebase/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
@@ -10,7 +11,7 @@ import 'firebase/firestore';
 })
 export class ItemsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private firestore: AngularFirestore,) { }
+  constructor(private route: ActivatedRoute,private firestore: AngularFirestore,private auth : AngularFireAuth) { }
   id
   items: Observable<any[]>;
   item 
@@ -27,6 +28,6 @@ export class ItemsComponent implements OnInit {
     });
   }
   onAdd(id){
-    this.firestore.collection('cart').add({'itemId': id, 'uid': 'vwTj6BHuESaNgjffflnbrdZ6eWV2'})
+    this.firestore.collection('cart').add({'itemId': id, 'uid': this.auth.auth.currentUser.uid})
   }
 }

@@ -22,9 +22,10 @@ export class CartComponent implements OnInit {
   address= ''
   loaded = false
   ngOnInit() {
-    console.log(this.auth.auth.currentUser)
-    this.items = this.firestore.collection('cart',ref => ref.where('uid', '==', 'vwTj6BHuESaNgjffflnbrdZ6eWV2')).valueChanges({ idField: 'id' });
+    console.log(this.auth.auth.currentUser.uid)
+    this.items = this.firestore.collection('cart',ref => ref.where('uid', '==', this.auth.auth.currentUser.uid)).valueChanges({ idField: 'id' });
     this.items.subscribe(i=>{
+      this.loaded = true
       this.menu=i 
       this.price =0 
       this.item = []
@@ -62,7 +63,10 @@ export class CartComponent implements OnInit {
   }
   onOrder(){
     console.log(this.address)
-    this.firestore.collection('orders').add({'items': this.item,'paid': this.price,'uid':'vwTj6BHuESaNgjffflnbrdZ6eWV2','chefId': this.item[0].chefId,'status': 0,'address' : this.address})
+    // this.firestore.collection('orders').add({'items': this.item,'paid': this.price,'uid':this.auth.auth.currentUser.uid,'chefId': this.item[0].chefId,'status': 0,'address' : this.address})
+    this.item.map(i=>{
+      this.firestore.collection('cart').doc(i.id).delete()
+    })
   }
 
 }
