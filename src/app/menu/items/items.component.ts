@@ -14,12 +14,16 @@ export class ItemsComponent implements OnInit {
   id
   items: Observable<any[]>;
   item 
+  loaded = false
   ngOnInit() {
     this.route.params.subscribe(params => {
      this.id =  params.id
      console.log(this.id)
      this.items = this.firestore.collection('menu',ref => ref.where('cid', '==', this.id)).valueChanges({ idField: 'id' });
-     this.items.subscribe(i=> this.item = i )
+     this.items.subscribe(i=>{
+        this.item = i 
+        this.loaded = true
+      })
     });
   }
   onAdd(id){

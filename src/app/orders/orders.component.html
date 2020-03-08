@@ -1,8 +1,10 @@
 <div class="container">
   <br>
   <h4>Orders</h4>
+  <mat-spinner *ngIf="!loaded"></mat-spinner>
   <div *ngFor="let o of orders">
-    <mat-card >
+    
+    <mat-card *ngIf="loaded">
       <div class="row">
         <div class="col-3">
           <span>{{o.id}}</span>

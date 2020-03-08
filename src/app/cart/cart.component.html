@@ -6,7 +6,8 @@
             <mat-card>
                 <mat-vertical-stepper >
                     <mat-step label="Items">
-                        <div class="row">
+                        <mat-spinner *ngIf="!loaded"></mat-spinner>
+                        <div class="row" *ngIf="loaded">
                             <div class="col-12" *ngFor="let i of item;let index=index">
                                 <span>{{i.name}}</span>
                                 <button mat-icon-button (click)="onMinus(index)" color="accent">-</button>

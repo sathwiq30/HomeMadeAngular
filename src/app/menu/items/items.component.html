@@ -1,6 +1,7 @@
-<div *ngFor="let i of item">
+<mat-spinner *ngIf="!loaded"></mat-spinner>
+<div *ngFor="let i of item" >
 
-    <div class="row">
+    <div class="row" *ngIf= "loaded">
         <div class="col-4">
             <span>{{i.name}}</span>
         </div>

@@ -9,14 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-
+  loaded = false
   constructor(private firestore: AngularFirestore,private router: Router,private route: ActivatedRoute) { }
   orders
+  
   items: Observable<any[]>;
   ngOnInit() {
     this.items = this.firestore.collection('orders',ref => ref.where('uid', '==', 'vwTj6BHuESaNgjffflnbrdZ6eWV2')).valueChanges({ idField: 'id' });
     this.items.subscribe((items:any)=> {
       this.orders=items; 
+      this.loaded = true
       items.map((i:any,id)=>{
         if(i.status == 0 ){
           this.orders[id].status = 'unconfirmed'

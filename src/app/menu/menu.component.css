@@ -1,0 +1,5 @@
+
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: rgb(5, 5, 5)!important;
+}

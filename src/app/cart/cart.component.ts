@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   item 
   price = 0
   address= ''
+  loaded = false
   ngOnInit() {
 
     this.items = this.firestore.collection('cart',ref => ref.where('uid', '==', 'vwTj6BHuESaNgjffflnbrdZ6eWV2')).valueChanges({ idField: 'id' });
@@ -35,7 +36,9 @@ export class CartComponent implements OnInit {
             this.item.push(i)
             console.log(i)
             this.price = this.price+ parseInt(i.price)
+            
           }
+          this.loaded = true
          })
       })
     } )

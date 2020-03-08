@@ -14,10 +14,14 @@ export class MenuComponent implements OnInit {
     private router: Router,private route: ActivatedRoute) { }
   menu 
   isOpen
+  loaded = false
   items: Observable<any[]>;
   ngOnInit() {
     this.items = this.firestore.collection('catogories',ref => ref.where('uid', '==', 'yiDtTBrdQxMr82Z37P4rQz4aCJK2')).valueChanges({ idField: 'id' });
-    this.items.subscribe(i=> this.menu = i )
+    this.items.subscribe(i=> {
+      this.menu = i
+      this.loaded = true
+    })
   }
   loadItems(a:string) {
     this.router.navigate(['items/'+a], {relativeTo: this.route});

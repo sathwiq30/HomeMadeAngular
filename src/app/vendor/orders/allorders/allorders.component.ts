@@ -12,6 +12,7 @@ export class AllordersComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore,private router: Router,private route: ActivatedRoute) { }
   orders
+  loaded= false
   items: Observable<any[]>;
   ngOnInit() {
     this.items = this.firestore.collection('orders',
@@ -21,6 +22,7 @@ export class AllordersComponent implements OnInit {
     ).valueChanges({ idField: 'id' });
     this.items.subscribe((items:any)=> {
       this.orders=items; 
+      this.loaded = true
       items.map((i:any,id)=>{
         if(i.status == 0 ){
           this.orders[id].status = 'unconfirmed'
