@@ -25,5 +25,8 @@ export class MenusComponent implements OnInit {
   openGroup(a: number){
     this.isOpen=a;
   }
+  onDelete(id){
+    this.firestore.collection('catogories').doc(id).delete()
+  }
 
 }

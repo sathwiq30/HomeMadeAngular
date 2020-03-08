@@ -48,6 +48,7 @@ export class AuthService {
         console.log(errorMessage)
         return errorMessage
       });
+      console.log(error)
       this.router.navigate(['/signup/'+error]);
   }
   async login(email: string, password: string) {
@@ -57,6 +58,7 @@ export class AuthService {
     };
     
     var error = await this.auth.auth.signInWithEmailAndPassword(email,password)
+
     .catch((error) =>{
       // Handle Errors here.
       var errorCode = error.code;
@@ -65,6 +67,8 @@ export class AuthService {
       console.log(errorMessage)
       return errorMessage
     });
+
+      
     this.router.navigate(['/login/'+error]);
 
 }

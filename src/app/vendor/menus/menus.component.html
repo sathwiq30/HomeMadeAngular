@@ -11,7 +11,9 @@
           {{i.name}}
         </mat-panel-title>
         <mat-panel-description>
-          catagories
+          <button mat-raised-button
+                (click)="onDelete(i.id)" color="warning">delete</button>
+
         </mat-panel-description>
       </mat-expansion-panel-header>
       <router-outlet *ngIf="isOpen==id"></router-outlet>     

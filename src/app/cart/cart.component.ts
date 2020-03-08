@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import 'firebase/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
+import {  AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -10,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private firestore: AngularFirestore,
+  constructor(private firestore: AngularFirestore,private auth : AngularFireAuth,
     private router: Router,private route: ActivatedRoute) { }
   menu 
   isOpen
@@ -21,7 +22,7 @@ export class CartComponent implements OnInit {
   address= ''
   loaded = false
   ngOnInit() {
-
+    console.log(this.auth.auth.currentUser)
     this.items = this.firestore.collection('cart',ref => ref.where('uid', '==', 'vwTj6BHuESaNgjffflnbrdZ6eWV2')).valueChanges({ idField: 'id' });
     this.items.subscribe(i=>{
       this.menu=i 

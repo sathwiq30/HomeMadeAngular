@@ -10,7 +10,10 @@ import { ItemComponent } from './vendor/menus/item/item.component';
 import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './vendor/order/order.component';
 import { AllordersComponent } from './vendor/orders/allorders/allorders.component';
+import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
 const routes: Routes = [
   { path : '' , redirectTo : 'menu',pathMatch : 'full'},
   { path : 'menu' , component : MenuComponent ,
@@ -20,15 +23,15 @@ const routes: Routes = [
   },
   { path : 'vendor/menu' , component :  MenusComponent,
     children: [
-      {path: 'item/:id', component: ItemComponent}
-    ]
+      {path: 'item/:id', component: ItemComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }}
+    ],  canActivate : [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   { path : 'vendor/orders' , component : OrderComponent},
   { path : 'vendor/allorders' , component : AllordersComponent},
-  { path : 'cart' , component : CartComponent},
-  { path : 'orders' , component : OrdersComponent},
-  {path : 'login', component: LoginComponent},
-  {path : 'login/:id', component: LoginComponent},
+  { path : 'cart' , component : CartComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  { path : 'orders' , component : OrdersComponent, canActivate : [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  {path : 'login', component: LoginComponent , canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems }},
+  {path : 'login/:id', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems }},
   { path : 'signup', component : SignupComponent},
   { path : 'signup/:id', component : SignupComponent}
 ];

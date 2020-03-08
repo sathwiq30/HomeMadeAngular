@@ -32,6 +32,7 @@ import { PreparingComponent } from './vendor/orders/preparing/preparing.componen
 import { OrderComponent } from './vendor/order/order.component';
 import { AllordersComponent } from './vendor/orders/allorders/allorders.component';
 import { AddressComponent } from './cart/address/address.component'
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { AddressComponent } from './cart/address/address.component'
     FormsModule,
     MatStepperModule,
     AngularFireAuthModule,
+    AngularFireAuthGuardModule,
     AngularFirestoreModule,
     BrowserModule,
     AppRoutingModule,

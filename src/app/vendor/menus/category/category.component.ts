@@ -15,6 +15,7 @@ export class CategoryComponent implements OnInit {
   }
   onSubmit(){
     this.firestore.collection('catogories').add({ 'name' : this.text, 'uid' :  'yiDtTBrdQxMr82Z37P4rQz4aCJK2' })
+    this.text=''
   }
 
 }

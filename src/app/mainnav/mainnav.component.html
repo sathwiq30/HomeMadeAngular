@@ -8,12 +8,7 @@
   
 <!-- This fills the remaining space of the current row -->
 
-<span>
-  <a mat-button routerLink="/login" routerLinkActive="active">Singin</a>   
-</span>
-<span >
-  <a mat-button routerLink="/signup" routerLinkActive="active">Signup</a>
-</span>
+
 <span>
   <a mat-button routerLink="/orders" routerLinkActive="active">Orders</a>
 </span>
@@ -29,4 +24,17 @@
 <span>
   <a mat-button routerLink="/vendor/menu" routerLinkActive="active">Vendor</a>
 </span>
+<div *ngIf="auth.user | async as user; else showLogin">
+  
+  <a mat-button (click)="logout()">Logout</a>
+  <span> {{ user.email }}</span>
+</div>
+<ng-template #showLogin>
+  <span>
+    <a mat-button routerLink="/login" routerLinkActive="active">Singin</a>   
+  </span>
+  <span >
+    <a mat-button routerLink="/signup" routerLinkActive="active">Signup</a>
+  </span>
+</ng-template>
 </mat-toolbar>
