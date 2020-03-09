@@ -21,27 +21,35 @@ export class CartComponent implements OnInit {
   price = 0
   address= ''
   loaded = false
-  ngOnInit() {
+  hashMap = {}
+  async ngOnInit() {
     console.log(this.auth.auth.currentUser.uid)
     this.items = this.firestore.collection('cart',ref => ref.where('uid', '==', this.auth.auth.currentUser.uid)).valueChanges({ idField: 'id' });
     this.items.subscribe(i=>{
-      this.loaded = true
+      console.log(i)
       this.menu=i 
       this.price =0 
       this.item = []
+      this.menu.map(m=> this.hashMap[m.itemId] = true)  
+      console.log(this.hashMap)
       this.menu.map(m=>{
-        this.menuItems = this.firestore.collection('menu').doc(m.itemId).valueChanges();
-        this.menuItems.subscribe(i=> {
-          if(i!= null){
-            i['id'] = m.id
-            i['no'] = 1
-            this.item.push(i)
-            console.log(i)
-            this.price = this.price+ parseInt(i.price)
-            
-          }
-          this.loaded = true
-         })
+        if(this.hashMap[m.itemId]){
+          this.hashMap[m.itemId] = false
+          this.menuItems = this.firestore.collection('menu').doc(m.itemId).valueChanges();
+          this.menuItems.subscribe(i=> {
+            if(i!= null){
+              
+              i['id'] = m.id
+              i['no'] = 1
+              this.item.push(i)
+              console.log(i)
+              this.price = this.price+ parseInt(i.price)
+              
+            }
+            console.log(this.hashMap)
+            this.loaded = true
+          })
+        }
       })
     } )
   }
