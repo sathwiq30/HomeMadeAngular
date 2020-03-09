@@ -27,8 +27,8 @@ const routes: Routes = [
       {path: 'item/:id', component: ItemComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }}
     ],  canActivate : [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
-  { path : 'vendor/orders' , component : OrderComponent},
-  { path : 'vendor/allorders' , component : AllordersComponent},
+  { path : 'vendor/orders' , component : OrderComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  { path : 'vendor/allorders' , component : AllordersComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
   { path : 'cart' , component : CartComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
   { path : 'orders' , component : OrdersComponent, canActivate : [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
   {path : 'login', component: LoginComponent , canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems }},

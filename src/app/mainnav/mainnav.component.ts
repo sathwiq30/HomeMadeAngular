@@ -8,7 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class MainnavComponent implements OnInit {
 
-  constructor(private auth : AngularFireAuth) { }
+  constructor(public auth : AngularFireAuth) { }
 
   ngOnInit() {
 
