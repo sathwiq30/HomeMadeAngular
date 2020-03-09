@@ -16,11 +16,27 @@ export class MenuComponent implements OnInit {
   isOpen
   loaded = false
   items: Observable<any[]>;
+  id
+  chef
   ngOnInit() {
-    this.items = this.firestore.collection('catogories',ref => ref.where('uid', '==', 'yiDtTBrdQxMr82Z37P4rQz4aCJK2')).valueChanges({ idField: 'id' });
-    this.items.subscribe(i=> {
-      this.menu = i
-      this.loaded = true
+    
+    this.route.params.subscribe(params => {
+      this.id =  params.id
+      
+        if( history.state.chef == undefined)
+          {
+            this.firestore.collection('chef').doc(this.id).valueChanges()
+              .subscribe(i=> this.chef= i)
+          }
+          else{
+            this.chef  = history.state.chef
+          }
+        
+      this.items = this.firestore.collection('catogories',ref => ref.where('uid', '==',this.id)).valueChanges({ idField: 'id' });
+      this.items.subscribe(i=> {
+        this.menu = i
+        this.loaded = true
+      })
     })
   }
   loadItems(a:string) {

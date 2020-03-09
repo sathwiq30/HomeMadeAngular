@@ -1,1 +1,36 @@
-<p>home works!</p>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-6" *ngFor="let c of chef">
+            <a *ngIf="c.availability==1" (click)="onRoute(c)" style="text-decoration: none;cursor: pointer;">
+                <mat-card>
+                    <div class="row">
+                        <div class="col-3">
+                            <img style="width: 8vw;height: 12vh;" src={{c.displayImage}}  >
+                        </div>
+                        <div class="col" style="margin: auto;">
+                          <p> {{c.restaurentName}}</p>
+                          <p *ngIf="c.verified==1">verified</p>
+                        </div>
+                    </div>
+                </mat-card><br>
+            </a>
+        </div>
+        <h5>Not Available to order Now</h5>
+        <div class="col-6" *ngFor="let c of chef">
+            <a *ngIf="c.availability!=1" (click)="onRoute(c.id)" style="text-decoration: none;cursor: pointer;">
+                <mat-card>
+                    <div class="row">
+                        <div class="col-3">
+                            <img style="width: 8vw;height: 12vh;" src={{c.displayImage}}  >
+                        </div>
+                        <div class="col" style="margin: auto;">
+                          <p> {{c.restaurentName}}</p>
+                          <p *ngIf="c.verified==1">verified</p>
+                        </div>
+                    </div>
+                </mat-card><br>
+            </a>
+        </div>
+    </div>
+</div>

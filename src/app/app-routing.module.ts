@@ -11,12 +11,13 @@ import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './vendor/order/order.component';
 import { AllordersComponent } from './vendor/orders/allorders/allorders.component';
 import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { HomeComponent } from './home/home.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
 const routes: Routes = [
-  { path : '' , redirectTo : 'menu',pathMatch : 'full'},
-  { path : 'menu' , component : MenuComponent ,
+  { path : '' ,component: HomeComponent},
+  { path : 'menu/:id' , component : MenuComponent ,
     children: [
       {path: 'items/:id', component: ItemsComponent}
     ]
