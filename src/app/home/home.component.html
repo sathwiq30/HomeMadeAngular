@@ -1,12 +1,12 @@
 <br>
 <div class="container">
     <div class="row">
-        <div class="col-6" *ngFor="let c of chef">
+        <div class="col-12 col-md-6" *ngFor="let c of chef">
             <a *ngIf="c.availability==1" (click)="onRoute(c)" style="text-decoration: none;cursor: pointer;">
                 <mat-card>
                     <div class="row">
                         <div class="col-3">
-                            <img style="width: 8vw;height: 12vh;" src={{c.displayImage}}  >
+                            <img class="img" src={{c.displayImage}}  >
                         </div>
                         <div class="col" style="margin: auto;">
                           <p> {{c.restaurentName}}</p>
@@ -16,7 +16,10 @@
                 </mat-card><br>
             </a>
         </div>
-        <h5>Not Available to order Now</h5>
+        <div class="col-12">
+            <h5>Not Available to order Now</h5>
+        </div>
+        
         <div class="col-6" *ngFor="let c of chef">
             <a *ngIf="c.availability!=1" (click)="onRoute(c.id)" style="text-decoration: none;cursor: pointer;">
                 <mat-card>

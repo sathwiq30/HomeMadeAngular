@@ -1,9 +1,10 @@
 <div class="container-fluid" style="background-color: gray;" *ngIf="chef">
     <div class="container">
       <div class="row">
-        <div class="col-3">
-          <img style="width: 15vw; height: 20vh; margin: 5vh ; border-radius: 1vh;" src={{chef.displayImage}} alt="">
-        </div><div class="col-2"></div>
+        <div class="col-6 col-md-3">
+          <img class="img" src={{chef.displayImage}} alt="">
+        </div>
+        <!-- <div class="col-2"></div> -->
         <div style="  margin : auto ;  " class="col">
           <h2  >{{chef.restaurentName}}</h2>
         </div>

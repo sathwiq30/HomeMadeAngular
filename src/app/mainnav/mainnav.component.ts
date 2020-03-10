@@ -13,6 +13,8 @@ export class MainnavComponent implements OnInit {
   isAdmin = false
   isChef = false
   ngOnInit() {
+    let user = this.auth.auth.currentUser;
+    if(user)
     this.auth.idTokenResult.subscribe(i=> {
       if(i.claims.admin){
         this.isAdmin = i.claims.admin

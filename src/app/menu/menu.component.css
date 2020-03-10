@@ -3,3 +3,12 @@
 .mat-progress-spinner circle, .mat-spinner circle {
     stroke: rgb(5, 5, 5)!important;
 }
+
+.img{
+    width: 15vw; height: 20vh; margin: 5vh ; border-radius: 1vh;
+}
+@media (max-width : 600px){
+    .img{
+        width: 25vw; height: 10vh; margin: 5vh ; border-radius: 1vh;
+    }
+}

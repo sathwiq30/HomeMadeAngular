@@ -1,0 +1,8 @@
+.img{
+    width: 8vw; height: 12vh;border-radius: 1vh;
+}
+@media (max-width : 600px){
+    .img{
+        width: 20vw; height: 10vh;  border-radius: 1vh;
+    }
+}
