@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import 'firebase/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  AngularFireAuth } from '@angular/fire/auth';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -11,7 +12,7 @@ import {  AngularFireAuth } from '@angular/fire/auth';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private firestore: AngularFirestore,private auth : AngularFireAuth,
+  constructor(private firestore: AngularFirestore,private auth : AngularFireAuth,private http: HttpClient,
     private router: Router,private route: ActivatedRoute) { }
   menu 
   isOpen
@@ -28,7 +29,7 @@ export class CartComponent implements OnInit {
     this.items.subscribe(i=>{
       console.log(i)
       this.menu=i 
-      this.price =0 
+      this.price =0
       this.item = []
       this.menu.map(m=> this.hashMap[m.itemId] = true)  
       console.log(this.hashMap)
@@ -69,12 +70,21 @@ export class CartComponent implements OnInit {
       this.price -= parseInt(this.item[i].price)  
     } 
   }
-  onOrder(){
-    console.log(this.address)
-    // this.firestore.collection('orders').add({'items': this.item,'paid': this.price,'uid':this.auth.auth.currentUser.uid,'chefId': this.item[0].chefId,'status': 0,'address' : this.address})
-    this.item.map(i=>{
+  async onOrder(){
+    // (window as any).open('http://localhost:3000/payment');
+    // console.log(this.firestore.collection('orders').ref)
+    await this.firestore.collection('order').add({'items': this.item,'paid': this.price+25,'uid':this.auth.auth.currentUser.uid,'chefId': this.item[0].chefId,'status': 0,'address' : this.address})
+      .then(i=> {
+        (window as any).open('https://us-central1-homemade-45afb.cloudfunctions.net/app/payment/'+i.id);
+
+      })
+    
+    this.router.navigateByUrl('orders')
+    this.firestore.collection('orders').add({'items': this.item,'paid': this.price,'uid':this.auth.auth.currentUser.uid,'chefId': this.item[0].chefId,'status': 0,'address' : this.address})
+    this.menu.map(i=>{
       this.firestore.collection('cart').doc(i.id).delete()
     })
+    
   }
 
 }

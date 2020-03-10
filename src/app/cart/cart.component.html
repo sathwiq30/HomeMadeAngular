@@ -10,13 +10,13 @@
                         <div class="row" *ngIf="loaded">
                             <div class="col-12" *ngFor="let i of item;let index=index">
                                 <span>{{i.name}}</span>
+                                <button style="float: right;" mat-raised-button (click)="onDelete(i.id)" color="accent">delete</button>
                                 <button mat-icon-button (click)="onMinus(index)" color="accent">-</button>
                                 <span> {{i.no}} </span>
                                 <button mat-icon-button (click)="onPlus(index)" color="accent">+</button>
                                 <br>
                                 <span>      Price : {{i.price}}           </span> 
                                 <br>
-                                <button mat-raised-button (click)="onDelete(i.id)" color="accent">delete</button>
                                 <hr>
                             </div>
                         </div>

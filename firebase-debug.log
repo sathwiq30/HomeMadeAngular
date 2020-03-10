@@ -1,0 +1,40 @@
+[debug] [2020-03-10T11:13:12.736Z] ----------------------------------------------------------------------
+[debug] [2020-03-10T11:13:12.739Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sathw\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2020-03-10T11:13:12.739Z] CLI Version:   7.14.0
+[debug] [2020-03-10T11:13:12.739Z] Platform:      win32
+[debug] [2020-03-10T11:13:12.739Z] Node Version:  v12.14.0
+[debug] [2020-03-10T11:13:12.740Z] Time:          Tue Mar 10 2020 16:43:12 GMT+0530 (India Standard Time)
+[debug] [2020-03-10T11:13:12.741Z] ----------------------------------------------------------------------
+[debug] [2020-03-10T11:13:12.741Z] 
+[debug] [2020-03-10T11:13:12.751Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-10T11:13:12.752Z] > authorizing via signed-in user
+[debug] [2020-03-10T11:13:12.752Z] [iam] checking project homemade-45afb for permissions ["firebase.projects.get"]
+[debug] [2020-03-10T11:13:12.754Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/homemade-45afb:testIamPermissions  
+
+[debug] [2020-03-10T11:13:14.738Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-10T11:13:14.744Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/homemade-45afb  
+ 
+[debug] [2020-03-10T11:13:15.325Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\sathw\Desktop\firebase\HomeMade'...
+[info] 
+[debug] [2020-03-10T11:13:15.331Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/homemade-45afb/webApps/-/config  
+ 
+[debug] [2020-03-10T11:13:17.207Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: dist
+[info] +  hosting: Local server: http://localhost:5000
+[warn] !  Your requested "node" version "8" doesn't match your global version "12"
+[info] +  functions: functions emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\Users\sathw\Desktop\firebase\HomeMade\functions" for Cloud Functions...
+[debug] [2020-03-10T11:13:17.371Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-03-10T11:13:17.372Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-03-10T11:13:17.372Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-03-10T11:13:17.372Z] [worker-~diagnostic~-d71c66c3-03ba-4d5f-a48f-1fcaac84f15f]: Assigning socketPath: \\?\pipe\C:\Users\sathw\Desktop\firebase\HomeMade\functions\13888
+[debug] [2020-03-10T11:13:17.372Z] [worker-~diagnostic~-d71c66c3-03ba-4d5f-a48f-1fcaac84f15f]: BUSY
+[debug] [2020-03-10T11:13:17.993Z] [runtime-status] [13888] Functions runtime initialized. {"cwd":"C:\\Users\\sathw\\Desktop\\firebase\\HomeMade\\functions","node_version":"12.14.0"}
+[debug] [2020-03-10T11:13:17.994Z] [runtime-status] [13888] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-03-10T11:13:17.997Z] [runtime-status] [13888] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"C:\\Users\\sathw\\Desktop\\firebase\\HomeMade\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-03-10T11:13:17.999Z] [runtime-status] [13888] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\sathw\\Desktop\\firebase\\HomeMade\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-03-10T11:13:18.001Z] [runtime-status] [13888] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\sathw\\Desktop\\firebase\\HomeMade\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[info] +  functions[app]: http function initialized (http://localhost:5001/homemade-45afb/us-central1/app).
+[debug] [2020-03-10T11:13:18.697Z] [worker-~diagnostic~-d71c66c3-03ba-4d5f-a48f-1fcaac84f15f]: IDLE

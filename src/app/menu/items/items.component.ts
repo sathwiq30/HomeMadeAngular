@@ -23,11 +23,13 @@ export class ItemsComponent implements OnInit {
      this.items = this.firestore.collection('menu',ref => ref.where('cid', '==', this.id)).valueChanges({ idField: 'id' });
      this.items.subscribe(i=>{
         this.item = i 
+        this.item.map(i => i.clicked = false)
         this.loaded = true
       })
     });
   }
-  onAdd(id){
+  onAdd(id,idx){
+    this.item[idx].clicked = true
     this.firestore.collection('cart').add({'itemId': id, 'uid': this.auth.auth.currentUser.uid})
   }
 }

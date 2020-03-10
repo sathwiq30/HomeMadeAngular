@@ -1,5 +1,5 @@
 <mat-spinner *ngIf="!loaded"></mat-spinner>
-<div *ngFor="let i of item" >
+<div *ngFor="let i of item;let idx= index" >
 
     <div class="row" *ngIf= "loaded">
         <div class="col-4">
@@ -9,7 +9,11 @@
             <span>{{i.price}}</span>
         </div>
         <div class="col-4">
-            <button mat-raised-button (click)="onAdd(i.id)" color="accent">Add to cart</button>
+            
+            <button mat-raised-button *ngIf="i.clicked;else addblock" >Added to cart</button>
+            <ng-template  #addblock >
+                <button mat-raised-button (click)="onAdd(i.id,idx)" color="accent">Add to cart</button>
+            </ng-template>
         </div>
     </div>
 </div>

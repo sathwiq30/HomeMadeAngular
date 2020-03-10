@@ -33,6 +33,9 @@ import { OrderComponent } from './vendor/order/order.component';
 import { AllordersComponent } from './vendor/orders/allorders/allorders.component';
 import { AddressComponent } from './cart/address/address.component'
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { SigninComponent } from './vendor/auth/signin/signin.component';
+import { RegisterComponent } from './vendor/auth/register/register.component';
+import { AdminComponent } from './admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +56,10 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
     PreparingComponent,
     OrderComponent,
     AllordersComponent,
-    AddressComponent
+    AddressComponent,
+    SigninComponent,
+    RegisterComponent,
+    AdminComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
