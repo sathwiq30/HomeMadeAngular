@@ -1,18 +1,20 @@
 <br><br>
+
 <div class="col-12 col-md-8 col-lg-4 " style="margin-left: auto;margin-right: auto;">
-  <mat-card>
+  <h3>Vendor Register</h3>
+  <mat-card *ngIf="registerd; else successfull">
     <mat-spinner *ngIf="isLoading" ></mat-spinner>
     
-    <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+    <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" >
       <mat-form-field>
-        <input matInput name="email" ngModel type="email" [email]="true" placeholder="E-Mail" #emailInput="ngModel" required email>
+        <input matInput name="email" ngModel  maxlength="320" minlength="6" type="email" [email]="true" placeholder="E-Mail" #emailInput="ngModel" required email>
         <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
         
       </mat-form-field>
       <mat-error *ngIf="r=='w'"> email is already used</mat-error>
       <br><br>
       <mat-form-field>
-        <input [type]="hide ? 'password' : 'text'" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+        <input [type]="hide ? 'password' : 'text'" maxlength="16" minlength="6" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
         </button>
@@ -22,4 +24,7 @@
       <button mat-raised-button color="primary" type="submit"  >Signup</button>
     </form>
   </mat-card>
+  <ng-template #successfull>
+    <p>successfully registered</p>
+  </ng-template>
 </div>

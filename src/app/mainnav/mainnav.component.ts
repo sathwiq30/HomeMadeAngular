@@ -14,19 +14,22 @@ export class MainnavComponent implements OnInit {
   isChef = false
   ngOnInit() {
     let user = this.auth.auth.currentUser;
-    if(user)
+
     this.auth.idTokenResult.subscribe(i=> {
-      if(i.claims.admin){
-        this.isAdmin = i.claims.admin
-        this.isChef = i.claims.admin
+      if(i !== null){
+        if(i.claims.admin){
+          this.isAdmin = i.claims.admin
+          // this.isChef = i.claims.admin
+        }
+        
+        
+        if(i.claims.chef){
+          this.isChef = i.claims.chef
+        }
       }
-      
       console.log(this.isAdmin)
-      if(i.claims.chef){
-        this.isChef = i.claims.chef
-      }
       console.log(this.isChef)
-    } )
+    })
     
   }
   logout() {

@@ -5,13 +5,13 @@
     
     <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
       <mat-form-field>
-        <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
+        <input matInput name="email"  maxlength="320" minlength="6" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
         <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
       </mat-form-field>
       <mat-error *ngIf="r=='w'"> email is already used</mat-error>
       <br><br>
       <mat-form-field>
-        <input [type]="hide ? 'password' : 'text'" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+        <input [type]="hide ? 'password' : 'text'"  maxlength="16" minlength="6" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
         </button>
