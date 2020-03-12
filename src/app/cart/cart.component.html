@@ -4,8 +4,8 @@
         <div class="col-12 col-md-8">
             
             <mat-card>
-                <mat-vertical-stepper >
-                    <mat-step label="Items">
+                <mat-vertical-stepper  >
+                    <mat-step  label="Items">
                         <mat-spinner *ngIf="!loaded"></mat-spinner>
                         <div class="row" *ngIf="loaded">
                             <div class="col-12" *ngFor="let i of item;let index=index">
@@ -22,8 +22,10 @@
                         </div>
                         <button style="float: right;" mat-button matStepperNext>Next</button>
                     </mat-step>
-                    <mat-step label="Address">
-                        <app-address (adress)="onAddress($event)" (geoPoint)="onGeoPoint($event)"></app-address>
+                    <mat-step style="padding: 0;" label="Address">
+                        <!-- <mat-card> -->
+                            <app-address (adress)="onAddress($event)" (geoPoint)="onGeoPoint($event)"></app-address>
+                        <!-- </mat-card> -->
                     </mat-step>
                 </mat-vertical-stepper>
                 

@@ -21,8 +21,9 @@ export class MapAddressComponent implements OnInit, AfterContentInit {
   private geoCoder;
   @Output() geoPoint = new EventEmitter<any>();
   // google
+  icon
   ngOnInit() {
-    
+
     // const cities = this.firestore.collection('cities');
     // const center = this.geo.point(40,50)
     // const radius = .5
@@ -42,7 +43,7 @@ export class MapAddressComponent implements OnInit, AfterContentInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.zoom = 8;
+        this.zoom = 12;
         console.log(this.latitude)
         let point =this.geo.point(this.latitude,this.longitude)
         console.log(point)

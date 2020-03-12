@@ -39,7 +39,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AgmCoreModule} from '@agm/core';
 import { MapAddressComponent } from './maps/map-address/map-address.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ChefProfileComponent } from './vendor/chef-profile/chef-profile.component'
+import { ChefProfileComponent } from './vendor/chef-profile/chef-profile.component';
+import { TrackingComponent } from './tracking/tracking.component'
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ChefProfileComponent } from './vendor/chef-profile/chef-profile.compone
     AdminComponent,
     MapAddressComponent,
     ProfileComponent,
-    ChefProfileComponent
+    ChefProfileComponent,
+    TrackingComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

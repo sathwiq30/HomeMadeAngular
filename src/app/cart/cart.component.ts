@@ -89,6 +89,7 @@ export class CartComponent implements OnInit {
     await this.firestore.collection('orders').add({'items': this.item,'paid': this.price,'uid':this.auth.auth.currentUser.uid,'chefId': this.item[0].chefId,'status': 0,'address' : this.address, pos : this.geoPoint})
       .then(i=> {
         (window as any).open('https://us-central1-homemade-45afb.cloudfunctions.net/app/payment/'+i.id);
+        // (window as any).open('http://localhost:5000/homemade-45afb/us-central1/app/payment/'+i.id);
 
       })
     

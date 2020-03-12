@@ -41,12 +41,13 @@ bodyParser  = require("body-parser"),
                 params['ORDER_ID'] = req.params.id,
                 params['CUST_ID'] = ''+data.uid ,
                 params['TXN_AMOUNT'] = ''+data.paid,
+                // params['CALLBACK_URL'] = 'http://localhost:5000/homemade-45afb/us-central1/app',
                 params['CALLBACK_URL'] = 'https://us-central1-homemade-45afb.cloudfunctions.net/app',
                 params['EMAIL'] = 'sathwiq301198@gmail.com',
                 params['MOBILE_NO'] = '9492232468'
 
                 checksum_lib.genchecksum(params,'BpsCtQdgvFQnOFy!',function(err,checksum){
-                    console.log(err)
+                    console.log(err+'checksum')
                     let txn_url = "https://securegw-stage.paytm.in/order/process"
 
                     let form_fields = ""
@@ -72,16 +73,22 @@ bodyParser  = require("body-parser"),
     })
 
 app.post('/', (req, res)=> {
+  console.log(req.body)
     db.collection('orders').doc(req.body.ORDERID).update({
         transactionStatus : req.body.STATUS,
         transactionId : req.body.TXNID ,
         statusCode : req.body.RESPCODE
     })
-    var html = '<html><body><center><h1>Success</h1></center><script type="text/javascript">window.close();</script></body></html>'
+    .then(()=> {console.log('success')
+    var html = '<html><body><center><h1>Success</h1></center> </body></html>'
                     res.writeHead(200,{'Content-Type' : 'text/html'})
                     res.write(html)
+                    return 1
+  })
+    .catch((err)=> console.log(err))
+    
     return 1
-});
+});  
 
 
 const admin = require('firebase-admin');
