@@ -36,7 +36,7 @@ export class ChefProfileComponent implements OnInit {
   }
   onSubmit(){
     
-    this.firestore.collection('chef').doc(this.auth.auth.currentUser.uid).set({ 'restaurentName' : this.text, displayImage : this.image,verified : 0, availability : false , 'uid' :  this.auth.auth.currentUser.uid })
+    this.firestore.collection('chef').doc(this.auth.auth.currentUser.uid).set({ 'restaurentName' : this.text, displayImage : this.image,verified : 0, availability : false , 'uid' :  this.auth.auth.currentUser.uid, point :  this.geoPoint })
     this.text=''
     this.image = ''
   }

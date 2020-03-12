@@ -3,8 +3,7 @@ import * as firebaseApp from 'firebase/app'
 import * as geofirex from 'geofirex'; 
 import { Observable, from } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore'; 
-import { MapsAPILoader } from '@agm/core';
-// import  * as google  from 'node_modules/google'
+import { MapsAPILoader } from '@agm/core'; 
 declare var google: any;
 @Component({
   selector: 'app-map-address',
