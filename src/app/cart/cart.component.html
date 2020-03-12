@@ -1,6 +1,6 @@
 <div class="container">
     <p>Cart</p>
-    <div class="row">
+    <div class="row" *ngIf="nothing;else not">
         <div class="col-12 col-md-8">
             
             <mat-card>
@@ -42,4 +42,10 @@
             </mat-card>
         </div>
     </div>
+    <ng-template #not>
+        <div style="margin-left: auto;margin-right: auto;">
+            <h4>Browse through menus to add to cart </h4>
+            <a mat-raised-button routerLink="/"  color="primary" >HomeMade</a>
+        </div>
+    </ng-template>
 </div>

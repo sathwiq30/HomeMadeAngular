@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import 'firebase/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -10,7 +11,7 @@ import 'firebase/firestore';
 })
 export class ItemComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private firestore: AngularFirestore,) { }
+  constructor(private route: ActivatedRoute,private firestore: AngularFirestore,private auth : AngularFireAuth) { }
   id
   items: Observable<any[]>;
   item 
@@ -25,7 +26,9 @@ export class ItemComponent implements OnInit {
     });
   }
   onSubmit(){
-    this.firestore.collection('menu').add({ 'name' : this.text,price : this.price, 'cid' :  this.id ,'chefId' : 'yiDtTBrdQxMr82Z37P4rQz4aCJK2'})
+    this.firestore.collection('menu').add({ 'name' : this.text,price : this.price, 'cid' :  this.id ,'chefId' : this.auth.auth.currentUser.uid , available : true})
+    this.price = ''
+    this.text = ''
   }
   edit =false
   i
@@ -50,6 +53,9 @@ export class ItemComponent implements OnInit {
   }
   onDelete(id){
     this.firestore.collection('menu').doc(id).delete()
+  }
+  onToggle(id, available){
+    this.firestore.collection('menu').doc(id).update({ available : available})
   }
 
 }

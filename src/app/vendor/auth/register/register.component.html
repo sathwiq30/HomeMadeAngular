@@ -2,7 +2,7 @@
 
 <div class="col-12 col-md-8 col-lg-4 " style="margin-left: auto;margin-right: auto;">
   <h3>Vendor Register</h3>
-  <mat-card *ngIf="registerd; else successfull">
+  <mat-card *ngIf="!registered; else successfull">
     <mat-spinner *ngIf="isLoading" ></mat-spinner>
     
     <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" >

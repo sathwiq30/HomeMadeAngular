@@ -22,16 +22,20 @@ export class MenuComponent implements OnInit {
     
     this.route.params.subscribe(params => {
       this.id =  params.id
-      
-        if( history.state.chef == undefined)
-          {
-            this.firestore.collection('chef').doc(this.id).valueChanges()
-              .subscribe(i=> this.chef= i)
-          }
-          else{
-            this.chef  = history.state.chef
-          }
-        
+      if( history.state.chef == undefined)
+      {
+        this.firestore.collection('chef').doc(this.id).valueChanges()
+          .subscribe(i=> {
+            this.chef= i
+            
+            console.log(i)
+          })
+      }
+      else{
+        this.chef  = history.state.chef
+        console.log(this.chef)
+      } 
+
       this.items = this.firestore.collection('catogories',ref => ref.where('uid', '==',this.id)).valueChanges({ idField: 'id' });
       this.items.subscribe(i=> {
         this.menu = i
@@ -40,7 +44,7 @@ export class MenuComponent implements OnInit {
     })
   }
   loadItems(a:string) {
-    this.router.navigate(['items/'+a], {relativeTo: this.route});
+    this.router.navigate(['items/'+a],{ state : { availability : this.chef.availability} , relativeTo: this.route});
   }
   openGroup(a: number){
     this.isOpen=a;

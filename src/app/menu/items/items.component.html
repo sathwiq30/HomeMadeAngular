@@ -8,12 +8,17 @@
         <div class="col-2 m ">
             <span>{{i.price}}</span>
         </div>
-        <div class="col-5 m">
+        <div class="col-5 m" *ngIf="availability; else un">
             <button mat-raised-button *ngIf="i.clicked;else addblock" >Added to cart</button>
             <ng-template  #addblock >
                 <button mat-raised-button (click)="onAdd(i.id,idx)" color="accent">Add to cart</button>
             </ng-template>
             <br>
         </div>
+        <ng-template #un>
+            <div class="col-5 m" >
+                <button mat-raised-button ><span>Not availabile</span></button>
+            </div>
+        </ng-template>
     </div>
 </div>

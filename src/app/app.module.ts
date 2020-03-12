@@ -36,6 +36,9 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { SigninComponent } from './vendor/auth/signin/signin.component';
 import { RegisterComponent } from './vendor/auth/register/register.component';
 import { AdminComponent } from './admin/admin.component';
+import { AgmCoreModule} from '@agm/core';
+import { MapAddressComponent } from './maps/map-address/map-address.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +62,8 @@ import { AdminComponent } from './admin/admin.component';
     AddressComponent,
     SigninComponent,
     RegisterComponent,
-    AdminComponent
+    AdminComponent,
+    MapAddressComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -84,7 +88,11 @@ import { AdminComponent } from './admin/admin.component';
     HttpClientModule,
     MatProgressSpinnerModule,
     MatRippleModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    AgmCoreModule.forRoot({
+      apiKey : 'AIzaSyBRjyQl1jUy91eDut-wPVeaX1E-6TuEB0M',
+      libraries: ['places']
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -22,12 +22,17 @@ export class CartComponent implements OnInit {
   price = 0
   address= ''
   loaded = false
+  nothing = true
   hashMap = {}
   async ngOnInit() {
     console.log(this.auth.auth.currentUser.uid)
     this.items = this.firestore.collection('cart',ref => ref.where('uid', '==', this.auth.auth.currentUser.uid)).valueChanges({ idField: 'id' });
     this.items.subscribe(i=>{
-      console.log(i)
+      this.loaded = true
+      if(i.length == 0 ){
+        this.nothing = false
+      }
+        console.log(i)
       this.menu=i 
       this.price =0
       this.item = []

@@ -18,7 +18,7 @@
   <a mat-button routerLink="/orders" routerLinkActive="active">Orders</a>
 </span>
 <span>
-  <a mat-button routerLink="/vendor/register" routerLinkActive="active">Vendor </a>
+  <a mat-button *ngIf="!isChef" routerLink="/vendor/register" routerLinkActive="active">Vendor </a>
 </span>
 <span>
   <a mat-button *ngIf="isChef" routerLink="/vendor/orders" routerLinkActive="active">Received Orders</a>

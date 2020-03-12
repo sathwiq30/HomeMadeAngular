@@ -5,8 +5,14 @@
           <img class="img" src={{chef.displayImage}} alt="">
         </div>
         <!-- <div class="col-2"></div> -->
-        <div style="  margin : auto ;  " class="col">
+        <div style=" margin : auto ;  " class="col-6 col-md-9">
           <h2  >{{chef.restaurentName}}</h2>
+        </div>
+        <div class="col-3" style="margin-left: auto;margin-right: auto;"  *ngIf="chef">
+          <a mat-raised-button disabled style="background-color: rgb(153, 197, 157);" *ngIf="chef.availability;else no"> serving</a>
+          <ng-template #no>
+            <a mat-raised-button disabled style="background-color: rgb(224, 134, 134);">Not serving</a>
+          </ng-template>
         </div>
       </div>
     </div>
