@@ -14,6 +14,7 @@ import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectL
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './vendor/auth/register/register.component';
 import { AdminComponent } from './admin/admin.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
@@ -32,7 +33,7 @@ const routes: Routes = [
   {path : 'login/:id', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems }},
   { path : 'signup', component : SignupComponent},
   { path : 'signup/:id', component : SignupComponent},
-
+  { path : 'profile' , component : ProfileComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
 
   // {path : 'vendor/login', component: LoginComponent  },
   // {path : 'login/:id', component: LoginComponent },

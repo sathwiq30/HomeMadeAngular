@@ -45,7 +45,10 @@ export class MapAddressComponent implements OnInit, AfterContentInit {
         this.longitude = position.coords.longitude;
         this.zoom = 8;
         console.log(this.latitude)
-        this.getAddress(this.latitude, this.longitude);
+        let point =this.geo.point(this.latitude,this.longitude)
+        console.log(point)
+        this.geoPoint.emit(point)
+        // this.getAddress(this.latitude, this.longitude);
       });
     }
   }
@@ -56,7 +59,7 @@ export class MapAddressComponent implements OnInit, AfterContentInit {
     let point =this.geo.point(this.latitude,this.longitude)
     console.log(point)
     this.geoPoint.emit(point)
-    this.getAddress(this.latitude, this.longitude);
+    // this.getAddress(this.latitude, this.longitude);
 
   }
  

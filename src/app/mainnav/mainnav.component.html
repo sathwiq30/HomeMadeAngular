@@ -18,7 +18,7 @@
   <a mat-button routerLink="/orders" routerLinkActive="active">Orders</a>
 </span>
 <span>
-  <a mat-button *ngIf="!isChef" routerLink="/vendor/register" routerLinkActive="active">Vendor </a>
+  <a mat-button *ngIf="!isChef" routerLink="/vendor/register" routerLinkActive="active">Chef </a>
 </span>
 <span>
   <a mat-button *ngIf="isChef" routerLink="/vendor/orders" routerLinkActive="active">Received Orders</a>
@@ -27,11 +27,12 @@
   <a mat-button *ngIf="isChef" routerLink="/vendor/allorders" routerLinkActive="active">All Orders</a>
 </span>
 <span>
-  <a mat-button *ngIf="isChef" routerLink="/vendor/menu" routerLinkActive="active">Vendor</a>
+  <a mat-button *ngIf="isChef" routerLink="/vendor/menu" routerLinkActive="active">Chef</a>
 </span>
 <div *ngIf="auth.user | async as user; else showLogin">
   
   <a mat-button (click)="logout()">Logout</a>
+  <a mat-button routerLink="/profile" routerLinkActive="active">Profile</a>   
   <span> {{ user.email }}</span>
 </div>
 <ng-template #showLogin>

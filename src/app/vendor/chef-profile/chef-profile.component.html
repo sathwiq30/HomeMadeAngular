@@ -1,0 +1,64 @@
+<div class="row" *ngIf="chef; else un">
+  <div class="col-6 col-md-3">
+    <img class="img" src="{{ chef.displayImage }}" alt="" />
+  </div>
+  <!-- <div class="col-2"></div> -->
+  <div style=" margin : auto ;  " class="col-6 col-md-9">
+    <h2>{{ chef.restaurentName }}</h2>
+  </div>
+  <div class="col-3" style="margin-left: auto;margin-right: auto;" *ngIf="chef">
+    <a
+      mat-raised-button
+      disabled
+      style="background-color: rgb(153, 197, 157);"
+      *ngIf="chef.availability; else no"
+    >
+      serving</a
+    >
+    <ng-template #no>
+      <a
+        mat-raised-button
+        disabled
+        style="background-color: rgb(224, 134, 134);"
+        >Not serving</a
+      >
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #un>
+    <mat-card>
+        <p>Add info about yourself</p>
+        <form class="example-form">
+          <mat-form-field>
+            <mat-label>Chef Name</mat-label>
+            <input
+              name="s"
+              matInput
+              minlength="3"
+              maxlength="10"
+              placeholder="Ex. Pizza"
+              [(ngModel)]="text"
+              required
+            /> </mat-form-field
+          ><br />
+          <mat-form-field>
+            <mat-label>Image</mat-label>
+            <input
+              name="i"
+              matInput
+              minlength="3"
+              maxlength="100"
+              placeholder="Ex. Pizza"
+              [(ngModel)]="image"
+              required
+            /> </mat-form-field
+          ><br />
+          <app-address (adress)="onAddress($event)" (geoPoint)="onGeoPoint($event)"></app-address>
+          <br>
+          <button mat-raised-button (click)="onSubmit()" color="accent">
+            Submit
+          </button>
+        </form>
+    </mat-card>
+</ng-template>
