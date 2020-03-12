@@ -29,7 +29,7 @@ bodyParser  = require("body-parser"),
     app.use(bodyParser.urlencoded({extended: true}));
 
     app.get('/payment/:id',(req,res)=>{ 
-        db.collection('order').doc(req.params.id)
+        db.collection('orders').doc(req.params.id)
             .get().then(i =>{
                 const data = i.data()
                 console.log(data)
@@ -72,7 +72,7 @@ bodyParser  = require("body-parser"),
     })
 
 app.post('/', (req, res)=> {
-    db.collection('order').doc(req.body.ORDERID).update({
+    db.collection('orders').doc(req.body.ORDERID).update({
         transactionStatus : req.body.STATUS,
         transactionId : req.body.TXNID ,
         statusCode : req.body.RESPCODE

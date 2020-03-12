@@ -9,12 +9,16 @@ export class AddressComponent implements OnInit {
 
   constructor() {}
    address = ''
+   @Output() geoPoint = new EventEmitter<any>();
    @Output() adress = new EventEmitter<string>();
   ngOnInit() {
 
   }
   send(){
     this.adress.emit(this.address)
+  }
+  onGeoPoint(event){
+    this.geoPoint.emit(event)
   }
   
 }

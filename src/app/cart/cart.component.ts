@@ -24,6 +24,7 @@ export class CartComponent implements OnInit {
   loaded = false
   nothing = true
   hashMap = {}
+  geoPoint 
   async ngOnInit() {
     console.log(this.auth.auth.currentUser.uid)
     this.items = this.firestore.collection('cart',ref => ref.where('uid', '==', this.auth.auth.currentUser.uid)).valueChanges({ idField: 'id' });
@@ -62,6 +63,9 @@ export class CartComponent implements OnInit {
   onAddress(a){
     this.address = a
   }
+  onGeoPoint(a){
+    this.geoPoint = a
+  }
   onDelete(id){
     this.firestore.collection('cart').doc(id).delete()
   }
@@ -76,20 +80,22 @@ export class CartComponent implements OnInit {
     } 
   }
   async onOrder(){
+    if(this.address == ''){
+      alert('please enter address')
+      return 1
+    }
     // (window as any).open('http://localhost:3000/payment');
     // console.log(this.firestore.collection('orders').ref)
-    await this.firestore.collection('order').add({'items': this.item,'paid': this.price+25,'uid':this.auth.auth.currentUser.uid,'chefId': this.item[0].chefId,'status': 0,'address' : this.address})
+    await this.firestore.collection('orders').add({'items': this.item,'paid': this.price,'uid':this.auth.auth.currentUser.uid,'chefId': this.item[0].chefId,'status': 0,'address' : this.address, pos : this.geoPoint})
       .then(i=> {
         (window as any).open('https://us-central1-homemade-45afb.cloudfunctions.net/app/payment/'+i.id);
 
       })
     
     this.router.navigateByUrl('orders')
-    this.firestore.collection('orders').add({'items': this.item,'paid': this.price,'uid':this.auth.auth.currentUser.uid,'chefId': this.item[0].chefId,'status': 0,'address' : this.address})
+    
     this.menu.map(i=>{
       this.firestore.collection('cart').doc(i.id).delete()
     })
-    
   }
-
 }

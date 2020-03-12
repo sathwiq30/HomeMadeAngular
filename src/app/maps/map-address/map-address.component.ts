@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit , Output, EventEmitter} from '@angular/core';
 import * as firebaseApp from 'firebase/app'
 import * as geofirex from 'geofirex'; 
 import { Observable, from } from 'rxjs';
@@ -20,6 +20,7 @@ export class MapAddressComponent implements OnInit, AfterContentInit {
   zoom: number;
   address: string;
   private geoCoder;
+  @Output() geoPoint = new EventEmitter<any>();
   // google
   ngOnInit() {
     
@@ -52,7 +53,11 @@ export class MapAddressComponent implements OnInit, AfterContentInit {
     console.log($event);
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
+    let point =this.geo.point(this.latitude,this.longitude)
+    console.log(point)
+    this.geoPoint.emit(point)
     this.getAddress(this.latitude, this.longitude);
+
   }
  
   getAddress(latitude, longitude) {

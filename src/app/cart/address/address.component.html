@@ -1,4 +1,6 @@
-<app-map-address></app-map-address>
+<app-map-address
+      (geoPoint)="onGeoPoint($event)"
+></app-map-address>
 
 <ng-template matStepLabel>Fill out your address</ng-template>
 <mat-form-field>

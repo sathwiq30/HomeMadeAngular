@@ -16,13 +16,17 @@ export class ItemsComponent implements OnInit {
   items: Observable<any[]>;
   item 
   loaded = false
-  availability =1
+  availability = true
   ngOnInit() {
 
     this.route.params.subscribe(params => {
-     this.availability = history.state.availability
+    
+    if(history.state.availability == undefined){
+      this.availability = true
+    }else
+          this.availability = history.state.availability
      this.id =  params.id
-     console.log(this.id)
+     this.loaded = false
      this.items = this.firestore.collection('menu',ref => ref.where('cid', '==', this.id)).valueChanges({ idField: 'id' });
      this.items.subscribe(i=>{
         this.item = i 
