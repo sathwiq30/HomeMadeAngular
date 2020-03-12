@@ -13,11 +13,14 @@ export class HomeComponent implements OnInit {
   chef
   ngOnInit() {
     this.fire.collection('chef').valueChanges({ idField: 'id' })
-      .subscribe(i=> {this.chef=i
+      .subscribe(i=> {
+        console.log(i)
+        this.chef=i
         this.loaded = true
       })
   }
   onRoute(chef){
+    console.log(chef)
     this.router.navigate(['menu/'+chef.id],{ state :{ chef : chef } })
   }
 }

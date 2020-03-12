@@ -31,9 +31,12 @@ export class ChefProfileComponent implements OnInit {
     this.geoPoint = a
     console.log(a)
   }
+  onToggle(id, bool){
+    this.firestore.collection('chef').doc(this.auth.auth.currentUser.uid).update({availability : bool})
+  }
   onSubmit(){
     
-    this.firestore.collection('chef').doc(this.auth.auth.currentUser.uid).set({ 'restaurentName' : this.text, displayImage : this.image,verified : 0, availablity : false , 'uid' :  this.auth.auth.currentUser.uid })
+    this.firestore.collection('chef').doc(this.auth.auth.currentUser.uid).set({ 'restaurentName' : this.text, displayImage : this.image,verified : 0, availability : false , 'uid' :  this.auth.auth.currentUser.uid })
     this.text=''
     this.image = ''
   }

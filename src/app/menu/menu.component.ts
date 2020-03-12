@@ -44,6 +44,7 @@ export class MenuComponent implements OnInit {
     })
   }
   loadItems(a:string) {
+    console.log(this.chef.availability)
     this.router.navigate(['items/'+a],{ state : { availability : this.chef.availability} , relativeTo: this.route});
   }
   openGroup(a: number){

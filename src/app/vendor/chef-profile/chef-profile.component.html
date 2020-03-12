@@ -8,18 +8,15 @@
   </div>
   <div class="col-3" style="margin-left: auto;margin-right: auto;" *ngIf="chef">
     <a
-      mat-raised-button
-      disabled
-      style="background-color: rgb(153, 197, 157);"
+    (click)="onToggle(chef.id,false)"
+      mat-raised-button style=" background-color: greenyellow;"
       *ngIf="chef.availability; else no"
     >
       serving</a
     >
     <ng-template #no>
-      <a
-        mat-raised-button
-        disabled
-        style="background-color: rgb(224, 134, 134);"
+      <a (click)="onToggle(chef.id,true)"
+        mat-raised-button color="accent"
         >Not serving</a
       >
     </ng-template>

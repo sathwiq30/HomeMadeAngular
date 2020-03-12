@@ -43,7 +43,7 @@ export class ItemComponent implements OnInit {
     this.itemId = i.id
   }
   onUpdate(){
-    this.firestore.collection('menu').doc(this.itemId).update({ 'name' : this.editText,price : this.editPrice, 'cid' :  this.i.cid,'chefId': 'yiDtTBrdQxMr82Z37P4rQz4aCJK2' })
+    this.firestore.collection('menu').doc(this.itemId).update({ 'name' : this.editText,price : this.editPrice, 'cid' :  this.i.cid,'chefId': this.auth.auth.currentUser.uid })
     this.edit = false
     this.i = null
     this.editPrice= null

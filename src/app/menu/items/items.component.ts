@@ -23,8 +23,10 @@ export class ItemsComponent implements OnInit {
     
     if(history.state.availability == undefined){
       this.availability = true
-    }else
-          this.availability = history.state.availability
+    }else{
+      this.availability = history.state.availability
+    }
+          
      this.id =  params.id
      this.loaded = false
      this.items = this.firestore.collection('menu',ref => ref.where('cid', '==', this.id)).valueChanges({ idField: 'id' });

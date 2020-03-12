@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import 'firebase/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-allorders',
   templateUrl: './allorders.component.html',
@@ -10,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AllordersComponent implements OnInit {
 
-  constructor(private firestore: AngularFirestore,private router: Router,private route: ActivatedRoute) { }
+  constructor(private firestore: AngularFirestore,private router: Router,private route: ActivatedRoute,private auth :AngularFireAuth) { }
   orders
   loaded= false
   items: Observable<any[]>;
@@ -18,7 +19,7 @@ export class AllordersComponent implements OnInit {
     this.items = this.firestore.collection('orders',
     ref => 
       ref
-      .where('chefId', '==', 'yiDtTBrdQxMr82Z37P4rQz4aCJK2') 
+      .where('chefId', '==', this.auth.auth.currentUser.uid) 
     ).valueChanges({ idField: 'id' });
     this.items.subscribe((items:any)=> {
       this.orders=items; 
