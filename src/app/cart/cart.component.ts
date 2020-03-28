@@ -5,6 +5,7 @@ import 'firebase/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  AngularFireAuth } from '@angular/fire/auth';
 import { HttpClient } from '@angular/common/http';
+import * as firebase from 'firebase'
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -80,13 +81,20 @@ export class CartComponent implements OnInit {
     } 
   }
   async onOrder(){
+    console.log()
     if(this.address == ''){
       alert('please enter address')
       return 1
     }
     // (window as any).open('http://localhost:3000/payment');
     // console.log(this.firestore.collection('orders').ref)
-    await this.firestore.collection('orders').add({'items': this.item,'paid': this.price,'uid':this.auth.auth.currentUser.uid,'chefId': this.item[0].chefId,'status': 0,'address' : this.address, pos : this.geoPoint})
+    await this.firestore.collection('orders')
+    .add(
+      {
+        'items': this.item,'paid': this.price,'uid':this.auth.auth.currentUser.uid,
+        'chefId': this.item[0].chefId,'status': 0,'address' : this.address, pos : this.geoPoint,
+        createdTime : firebase.firestore.FieldValue.serverTimestamp()
+      })
       .then(i=> {
         (window as any).open('https://us-central1-homemade-45afb.cloudfunctions.net/app/payment/'+i.id);
         // (window as any).open('http://localhost:5000/homemade-45afb/us-central1/app/payment/'+i.id);

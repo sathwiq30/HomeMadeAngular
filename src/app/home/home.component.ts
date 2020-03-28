@@ -12,6 +12,7 @@ import * as geofirex from 'geofirex';
 export class HomeComponent implements OnInit {
   loaded = false
   location =false 
+  locationAccess = false
   geo = geofirex.init(firebaseApp);
   constructor(private fire : AngularFirestore,public router : Router,private mapsAPILoader: MapsAPILoader) { }
   chef
@@ -26,7 +27,21 @@ export class HomeComponent implements OnInit {
     //   this.loaded = true
     // })
     // this.setCurrentLocation()
-    
+    this.mapsAPILoader.load().then(() => {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.latitude = position.coords.latitude;
+          this.longitude = position.coords.longitude;
+          this.zoom = 12;
+          console.log(this.latitude)
+          let point =this.geo.point(this.latitude,this.longitude)
+          console.log(point)
+          this.setCurrentLocation(point)
+          this.locationAccess = true
+          // this.getAddress(this.latitude, this.longitude);
+        });
+      } 
+    })
   }
   onLocation(){
     (this.location) ? this.location = false : this.location = true

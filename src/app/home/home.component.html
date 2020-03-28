@@ -2,7 +2,7 @@
 <div class="container">
     <button mat-icon-button (click)="onLocation()">
         <mat-icon> location_on</mat-icon>
-        Location
+        Place Marker 
     </button>
     <div class="col-md-7" style="margin: 0;padding: 0;">
         <mat-card  *ngIf="location" >
@@ -12,7 +12,8 @@
         </mat-card>
     </div>
     <br>
-    <div class="row">
+
+    <div class="row" *ngIf="locationAccess;else giveLocationAccess">
         <mat-spinner *ngIf="!loaded  "></mat-spinner>
         <div class="col-12 col-md-6" *ngFor="let c of chef">
             <a *ngIf="c.availability==1" (click)="onRoute(c)" style="text-decoration: none;cursor: pointer;">
@@ -49,4 +50,7 @@
             </a>
         </div>
     </div>
+    <ng-template #giveLocationAccess>
+        give location Access
+    </ng-template>
 </div>

@@ -99,10 +99,11 @@ admin.initializeApp({
 });
 app.post('/setCustomClaims/', (req, res) => {
   console.log(req.body.uid)
-  admin.auth().setCustomUserClaims(req.body.uid, {chef: true})
+  
+  admin.auth().setCustomUserClaims(req.body.uid, { chef : true})
     .then(()=> {
       res.status(201).json({
-        message:"Success"
+        message:"Successfull"
       });
       return 1
     } )
@@ -115,6 +116,27 @@ app.post('/setCustomClaims/', (req, res) => {
   return 1
 
   });
-
+app.post('/chef',(req,res)=>{
+  admin.auth().createUser({
+    email : req.body.email,
+    password : req.body.password
+  })
+  .then(async function(userRecord) {
+    // See the UserRecord reference doc for the contents of userRecord.
+    await admin.auth().setCustomUserClaims(userRecord.uid, { chef : true})
+    await db.collection('chefClaims').add({email : req.body.email, uid : userRecord.uid})
+    console.log('Successfully created new user:', userRecord.uid);
+    res.status(201).json({
+      message:"Successfull"
+    });
+    return 1
+  })
+  .catch(function(error) {
+    console.log('Error creating new user:', error);
+    res.status(400).json({
+      message:"error"
+    });
+  });
+})
 exports.app = functions.https.onRequest(app);
 

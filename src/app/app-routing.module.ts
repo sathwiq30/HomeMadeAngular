@@ -15,10 +15,11 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './vendor/auth/register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CmenusComponent } from './admin/cmenus/cmenus.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
-const adminOnly = () => hasCustomClaim('admin');
+const adminOnly = () => hasCustomClaim('chef');
 const chefOnly = () => hasCustomClaim('chef'  );
 const routes: Routes = [
   { path : '' ,component: HomeComponent},
@@ -46,8 +47,8 @@ const routes: Routes = [
   },
   { path : 'vendor/orders' , component : OrderComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: chefOnly  }},
   { path : 'vendor/allorders' , component : AllordersComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: chefOnly   } },
-  { path : 'admin', component : AdminComponent,        canActivate: [AngularFireAuthGuard], data: { authGuardPipe: adminOnly }},
-  
+  { path : 'admin', component : AdminComponent,  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: adminOnly }},
+  { path : 'chef/:id' , component : CmenusComponent, canActivate: [ AngularFireAuthGuard] , data : { authGuardPipe : adminOnly}}
 ];
 
 @NgModule({

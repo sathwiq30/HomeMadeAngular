@@ -1,6 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+body{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/homemade-45afb.appspot.com/o/bWqmEQ1uBSfSlKjdJd81xoMahmw2%2FWhatsApp%20Image%202020-03-27%20at%2010.22.10%20PM.jpeg?alt=media&token=5f12fc90-0226-4ba2-96f8-e9eee94f31e6');
+}
+@media screen and (max-width: 600px) {
+  body {
+    background-size: cover;
+
+    background-repeat: no-repeat;
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/homemade-45afb.appspot.com/o/bWqmEQ1uBSfSlKjdJd81xoMahmw2%2FWhatsApp%20Image%202020-03-27%20at%2010.22.09%20PM.jpeg?alt=media&token=b3bbc6ca-177b-4994-99a7-129ccd719f46');
+
+  }
+}
+
+
 /*!
  * Bootstrap Grid v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

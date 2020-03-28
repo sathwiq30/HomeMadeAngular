@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import 'firebase/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UploadPhotoService } from 'src/app/services/upload-photo.service';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -11,7 +12,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class ItemComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private firestore: AngularFirestore,private auth : AngularFireAuth) { }
+  constructor(private route: ActivatedRoute,private firestore: AngularFirestore,private auth : AngularFireAuth,
+    private storage : UploadPhotoService
+    ) { }
   id
   items: Observable<any[]>;
   item 
@@ -25,10 +28,14 @@ export class ItemComponent implements OnInit {
      this.items.subscribe(i=> this.item = i )
     });
   }
-  onSubmit(){
-    this.firestore.collection('menu').add({ 'name' : this.text,price : this.price, 'cid' :  this.id ,'chefId' : this.auth.auth.currentUser.uid , available : true})
+  async onSubmit(){
+    const url = await this.storage.uploadFile( this.auth.auth.currentUser.uid, this.photos[0] )
+    this.firestore.collection('menu').add({ 'name' : this.text,price : this.price, 'cid' :  this.id ,'chefId' : this.auth.auth.currentUser.uid , available : true, image : url})
     this.price = ''
     this.text = ''
+    this.images= []
+    this.photos = []
+    this.previewUrl = false
   }
   edit =false
   i
@@ -56,6 +63,36 @@ export class ItemComponent implements OnInit {
   }
   onToggle(id, available){
     this.firestore.collection('menu').doc(id).update({ available : available})
+  }
+
+  imagePreview = ''
+  previewUrl  : boolean = false
+  images = [] 
+  photos = []
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    
+    var mimeType = file.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+    console.log(this.photos)
+    var reader = new FileReader();      
+    reader.readAsDataURL(file); 
+    reader.onload = (_event) => { 
+      this.photos.push(file)
+      this.images.push( reader.result); 
+      this.previewUrl = true
+      // console.log(reader.result)
+    }
+  }
+  onRemove(i){
+    this.photos.splice(i,1)
+    this.images.splice(i,1)
+    console.log(i)
+    console.log(this.images) 
+    if(this.images.length==0)
+      this.previewUrl = false
   }
 
 }

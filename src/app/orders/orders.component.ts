@@ -17,7 +17,12 @@ export class OrdersComponent implements OnInit {
   items: Observable<any[]>;
   ngOnInit() {
 
-    this.items = this.firestore.collection('orders',ref => ref.where('uid', '==', this.auth.auth.currentUser.uid)).valueChanges({ idField: 'id' });
+    this.items = this.firestore
+    .collection('orders',
+        ref => ref.where('uid', '==', this.auth.auth.currentUser.uid)
+        .orderBy('createdTime')
+    )
+    .valueChanges({ idField: 'id' });
     this.items.subscribe((items:any)=> {
       this.orders=items; 
       this.loaded = true

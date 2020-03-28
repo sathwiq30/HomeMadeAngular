@@ -17,7 +17,9 @@ export class MainnavComponent implements OnInit {
 
     this.auth.idTokenResult.subscribe(i=> {
       if(i !== null){
+        console.log(i)
         if(i.claims.admin){
+          
           this.isAdmin = i.claims.admin
           // this.isChef = i.claims.admin
         }

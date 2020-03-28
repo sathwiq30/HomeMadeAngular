@@ -18,6 +18,8 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import {MatTabsModule} from '@angular/material/tabs';
 import { OrdersComponent } from './orders/orders.component';
 import { MenuComponent } from './menu/menu.component';
 import { ItemsComponent } from './menu/items/items.component';
@@ -40,7 +42,12 @@ import { AgmCoreModule} from '@agm/core';
 import { MapAddressComponent } from './maps/map-address/map-address.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChefProfileComponent } from './vendor/chef-profile/chef-profile.component';
-import { TrackingComponent } from './tracking/tracking.component'
+import { TrackingComponent } from './tracking/tracking.component';
+import { AddchefComponent } from './admin/addchef/addchef.component';
+import { ChefsprofileComponent } from './admin/chefsprofile/chefsprofile.component';
+import { CmenusComponent } from './admin/cmenus/cmenus.component';
+import { ChefcategoryComponent } from './admin/cmenus/chefcategory/chefcategory.component';
+import { ChefitemComponent } from './admin/cmenus/chefitem/chefitem.component'
 
 @NgModule({
   declarations: [
@@ -69,16 +76,23 @@ import { TrackingComponent } from './tracking/tracking.component'
     MapAddressComponent,
     ProfileComponent,
     ChefProfileComponent,
-    TrackingComponent
+    TrackingComponent,
+    AddchefComponent,
+    ChefsprofileComponent,
+    CmenusComponent,
+    ChefcategoryComponent,
+    ChefitemComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
     FormsModule,
     MatStepperModule,
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
     AngularFirestoreModule,
     BrowserModule,
+    MatTabsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,
@@ -100,7 +114,7 @@ import { TrackingComponent } from './tracking/tracking.component'
       libraries: ['places']
     })
   ],
-  providers: [],
+  providers: [  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,15 +1,41 @@
 <mat-spinner *ngIf="!loaded"></mat-spinner>
-<div *ngFor="let i of item;let idx= index" >
-
-    <div class="row" *ngIf= "loaded">
-        <div class="col-2 m">
+<div  class="row"   >
+    <mat-card  class="col-11 col-md-3 s" *ngFor="let i of item;let idx= index"> 
+        <img mat-card-image [src]="i.image" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <!-- <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+            </p> -->
+            <h1>{{i.name}}</h1><br>
+            <span>Cost {{i.price}}</span>
+        </mat-card-content>
+        <mat-card-actions>
+            <!-- <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button> -->
+            <div class="col-5 m" *ngIf="availability; else un">
+                <button mat-raised-button *ngIf="i.clicked;else addblock" >Added to cart</button>
+                <ng-template  #addblock >
+                    <button mat-raised-button (click)="onAdd(i.id,idx)" color="accent">Add to cart</button>
+                </ng-template>
+                <br>
+            </div>
+            <ng-template #un>
+                <div class="col-5 m" >
+                    <button mat-raised-button ><span>Not availabile</span></button>
+                </div>
+            </ng-template>
+        </mat-card-actions>
+    </mat-card>
+        
+        <!-- <div class="col-2 m">
             <span>{{i.name}}</span>
         </div>
         <div class="col-2 m ">
             <span>{{i.price}}</span>
         </div>
         <div class="col-5 m" *ngIf="availability; else un">
-            <!-- {{availability}} -->
             <button mat-raised-button *ngIf="i.clicked;else addblock" >Added to cart</button>
             <ng-template  #addblock >
                 <button mat-raised-button (click)="onAdd(i.id,idx)" color="accent">Add to cart</button>
@@ -20,6 +46,5 @@
             <div class="col-5 m" >
                 <button mat-raised-button ><span>Not availabile</span></button>
             </div>
-        </ng-template>
-    </div>
+        </ng-template> -->
 </div>

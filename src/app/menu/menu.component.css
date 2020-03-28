@@ -7,8 +7,12 @@
 .img{
     width: 15vw; height: 20vh; margin: 5vh ; border-radius: 1vh;
 }
+
 @media (max-width : 600px){
     .img{
-        width: 25vw; height: 10vh; margin: 5vh ; border-radius: 1vh;
+        width: 25vw; height: 15vh; margin: 5vh ; border-radius: 1vh;
+    }
+    .exp{
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
     }
 }

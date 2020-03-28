@@ -21,8 +21,8 @@
     <h5>Exclusive Deals</h5>
 <h4>Menu Items</h4>
 <mat-spinner *ngIf="!loaded" ></mat-spinner>
-<mat-accordion *ngIf="loaded"> 
-    <mat-expansion-panel *ngFor="let i of menu,let id=index" (click)="loadItems(i.id)" (opened)="openGroup(id)">
+<mat-accordion  *ngIf="loaded"> 
+    <mat-expansion-panel class="exp" *ngFor="let i of menu,let id=index" (click)="loadItems(i.id)" (opened)="openGroup(id)">
       <mat-expansion-panel-header  >
         <mat-panel-title >
           {{i.name}}

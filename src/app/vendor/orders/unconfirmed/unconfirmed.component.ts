@@ -32,6 +32,7 @@ export class UnconfirmedComponent implements OnInit {
   } 
   onAccept(id){
     this.firestore.collection('orders').doc(id).update({'status' : 1})
+    
   }
   
 }

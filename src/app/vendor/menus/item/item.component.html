@@ -1,3 +1,19 @@
+<div >
+  <input type="file" #filePicker (change)="onImagePicked($event)">
+  <a (click)="filePicker.click()"  style="cursor: pointer;">
+    <!-- <mdb-icon class="plus" *ngIf="!previewUrl"fas icon="camera"size='2x'></mdb-icon> -->
+    <mat-icon aria-hidden="false"  *ngIf="!previewUrl" aria-label="Example home icon">camera</mat-icon>
+  </a>
+  <div  *ngIf="previewUrl">
+    <div *ngFor='let image of images;let i = index'>
+      <img style="border-radius: .5vw;" width="200px" [src]="image"  >
+      <a (click)="onRemove(i)" style="cursor: pointer;">
+          <!-- <mdb-icon far icon="times-circle" size="2x"></mdb-icon>   -->
+          <mat-icon aria-hidden="false"  *ngIf="previewUrl" aria-label="Example home icon">clear</mat-icon>
+      </a>
+    </div>
+  </div>
+</div>
 <form class="example-form">
     <mat-form-field >
       <mat-label>Item  Label</mat-label>
@@ -38,8 +54,10 @@
             <mat-label>Price</mat-label>
             <input name="sa" matInput placeholder="500" [(ngModel)]= "editPrice" >
           </mat-form-field>
+          
           <button mat-raised-button (click)="onUpdate()" color="accent">update to menu</button>
         </form>
+        
     </div>
     <br>
 </div>

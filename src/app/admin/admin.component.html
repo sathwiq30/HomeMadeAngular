@@ -1,10 +1,25 @@
-<br><br>
-<div class="container">
-    <div class="col-12 col-md-8  " style="margin-left: auto;margin-right: auto;" *ngFor="let i of chefs;let index=index">
-        <mat-card>
-            <span>{{i.email}}</span>
-            <button (click)="add(i)" style="float: right;" mat-raised-button color="accent">add to chef</button>
-            <button style="float: right;" mat-raised-button color="accent">delete</button>
-        </mat-card>
-    </div>
-</div>
+<mat-tab-group color="primary" backgroundColor="primary">
+    <mat-tab label="Aprove chefs">
+        <div class="col-12 col-md-8  " style="margin-left: auto;margin-right: auto;" *ngFor="let i of chefs;let index=index">
+            <br>
+            <mat-card>
+                <span>{{i.email}}</span>
+                <button (click)="add(i)" style="float: right;" mat-raised-button color="accent">add to chef</button>
+                <button (click)="delete(i)" style="float: right;" mat-raised-button color="accent">delete</button>
+            </mat-card> 
+        </div>
+    </mat-tab>
+    <mat-tab label="Aproved chefs">
+        <div class="col-12 col-md-8  " style="margin-left: auto;margin-right: auto;" *ngFor="let i of aproved;let index=index">
+            <br>
+            <mat-card >
+                <span>{{i.email}}</span>
+                <button (click)="navigate(i.uid)" style="float: right;" mat-raised-button color="accent">Update </button>
+                <button style="float: right;" mat-raised-button color="accent">remove</button>
+            </mat-card> 
+        </div>
+    </mat-tab>
+    <mat-tab label="add chef">
+        <app-addchef></app-addchef>
+    </mat-tab>
+  </mat-tab-group>
