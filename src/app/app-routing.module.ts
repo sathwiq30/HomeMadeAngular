@@ -16,6 +16,7 @@ import { RegisterComponent } from './vendor/auth/register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CmenusComponent } from './admin/cmenus/cmenus.component';
+import { ChefitemComponent } from './admin/cmenus/chefitem/chefitem.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
@@ -48,7 +49,11 @@ const routes: Routes = [
   { path : 'vendor/orders' , component : OrderComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: chefOnly  }},
   { path : 'vendor/allorders' , component : AllordersComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: chefOnly   } },
   { path : 'admin', component : AdminComponent,  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: adminOnly }},
-  { path : 'chef/:id' , component : CmenusComponent, canActivate: [ AngularFireAuthGuard] , data : { authGuardPipe : adminOnly}}
+  { path : 'chef/:id' , component : CmenusComponent, canActivate: [ AngularFireAuthGuard] , data : { authGuardPipe : adminOnly} ,
+  children: [
+    {path: 'item/:i/:id', component: ChefitemComponent , canActivate : [AngularFireAuthGuard], data: { authGuardPipe: adminOnly }}
+  ], 
+  }
 ];
 
 @NgModule({

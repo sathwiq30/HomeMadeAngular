@@ -19,6 +19,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import {MatTabsModule} from '@angular/material/tabs';
 import { OrdersComponent } from './orders/orders.component';
 import { MenuComponent } from './menu/menu.component';
@@ -34,7 +35,7 @@ import { PreparingComponent } from './vendor/orders/preparing/preparing.componen
 import { OrderComponent } from './vendor/order/order.component';
 import { AllordersComponent } from './vendor/orders/allorders/allorders.component';
 import { AddressComponent } from './cart/address/address.component'
-import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+
 import { SigninComponent } from './vendor/auth/signin/signin.component';
 import { RegisterComponent } from './vendor/auth/register/register.component';
 import { AdminComponent } from './admin/admin.component';

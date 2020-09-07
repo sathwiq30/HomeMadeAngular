@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-chefcategory',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChefcategoryComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private firestore: AngularFirestore, private route : ActivatedRoute) { }
+  text = ''
   ngOnInit() {
+  }
+  id
+  onSubmit(){
+    this.route.params.subscribe(params => {
+      console.log(params.id)
+      this.id = params.id
+      this.firestore.collection('catogories').add({ 'name' : this.text, 'uid' :  this.id })
+      this.text=''
+    })
   }
 
 }

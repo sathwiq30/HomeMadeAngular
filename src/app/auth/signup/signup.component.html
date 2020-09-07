@@ -5,7 +5,7 @@
     
     <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
       <mat-form-field>
-        <input matInput name="email"  maxlength="320" minlength="6" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
+        <input matInput name="email"  maxlength="320" minlength="6" ngModel type="email" email placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
         <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
       </mat-form-field>
       <mat-error *ngIf="r=='w'"> email is already used</mat-error>

@@ -1,4 +1,21 @@
 <div class="container">
     <app-chefsprofile></app-chefsprofile>
-    <!-- <app-category></app-category> -->
+    <app-chefcategory></app-chefcategory>
+    <h4>Menu Items</h4>
+    <mat-accordion> 
+        <mat-expansion-panel *ngFor="let i of menu,let id=index" (click)="loadItems(i.id)" (opened)="openGroup(id)">
+        <mat-expansion-panel-header  >
+            <mat-panel-title >
+            {{i.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+            <button mat-raised-button
+                    (click)="onDelete(i.id)" style="background-color: rgb(196, 16, 16);">delete</button>
+
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <router-outlet *ngIf="isOpen==id"></router-outlet>     
+        </mat-expansion-panel>
+    </mat-accordion>
+
 </div>
